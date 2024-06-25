@@ -11,7 +11,9 @@ public class LoginListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        player.setGliding(true);
         player.sendMessage("Welcome to the server!");
+        player.sendMessage("Fly around and have fun!");
     }
 
 }
