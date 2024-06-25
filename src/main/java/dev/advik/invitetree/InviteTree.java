@@ -21,7 +21,10 @@ public final class InviteTree extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
+        // Make sure the data folder exists
+        if (!getDataFolder().exists()) {
+            getDataFolder().mkdir();
+        }
         storageManager = new StorageManager(url, logger);
         storageManager.connect();
         storageManager.createTables();
@@ -34,7 +37,11 @@ public final class InviteTree extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        storageManager.disconnect();
+        try {
+            storageManager.disconnect();
+        } catch (Exception e) {
+            logger.warning("Failed to disconnect from the database!");
+        }
         // Plugin shutdown logic
         logger.info("InviteTree has been disabled!");
     }
