@@ -11,17 +11,20 @@ import java.util.logging.Logger;
 public final class InviteTree extends JavaPlugin {
 
     private Logger logger;
-    private String url;
+    private final String url;
     private StorageManager storageManager;
+
+    InviteTree() {
+        logger = getLogger();
+        url = "jdbc:sqlite:" + getDataFolder().getAbsolutePath() + "/players.db";
+    }
 
     @Override
     public void onEnable() {
         // Plugin startup logic
-        logger = getLogger();
         storageManager = new StorageManager(url, logger);
         storageManager.connect();
         storageManager.createTables();
-        url = "jdbc:sqlite:" + getDataFolder().getAbsolutePath() + "/players.db";
         PluginManager pluginMGR = getServer().getPluginManager();
         pluginMGR.registerEvents(new LoginListener(storageManager), this);
         getCommand("inviteDebug").setExecutor(new InviteDebug(storageManager));
