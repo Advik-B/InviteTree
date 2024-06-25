@@ -14,7 +14,7 @@ public final class InviteTree extends JavaPlugin {
     private final String url;
     private StorageManager storageManager;
 
-    InviteTree() {
+    public InviteTree() {
         logger = getLogger();
         url = "jdbc:sqlite:" + getDataFolder().getAbsolutePath() + "/players.db";
     }
