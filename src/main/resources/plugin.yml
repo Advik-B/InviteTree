@@ -1,4 +1,4 @@
 name: InviteTree
 version: '${project.version}'
-main: me.advik.invitetree.InviteTree
+main: dev.advik.invitetree.InviteTree
 api-version: '1.20'

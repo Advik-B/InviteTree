@@ -1,4 +1,4 @@
-package me.advik.invitetree;
+package dev.advik.invitetree;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
