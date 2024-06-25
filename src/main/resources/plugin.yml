@@ -2,3 +2,4 @@ name: InviteTree
 version: '${project.version}'
 main: dev.advik.invitetree.InviteTree
 api-version: '1.20'
+description: 'A plugin that allows you to invite players to your SMP.'
