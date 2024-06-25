@@ -13,8 +13,16 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import static net.kyori.adventure.text.Component.text;
 import static net.kyori.adventure.text.format.TextColor.color;
+import dev.advik.invitetree.datastore.StorageManager;
+
 
 public class LoginListener implements Listener {
+
+    private final StorageManager manager;
+
+    public LoginListener(StorageManager manager) {
+        this.manager = manager;
+    }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
