@@ -1,7 +1,5 @@
 package dev.advik.invitetree.database;
 
-import dev.advik.invitetree.AccessTokenStatus;
-
 import java.util.Map;
 
 public interface DatabaseSchema {
