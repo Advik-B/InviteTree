@@ -3,7 +3,12 @@ package dev.advik.invitetree.database;
 import java.util.Map;
 
 public interface DatabaseSchema {
+
+    public void setConnectionUrl(String url);
+
     public void createTables();
+
+    public void connect();
 
     public String generateAccessToken(InviteType invitorType); // This assumes that the invitorName is not needed because invitor is CONSOLE
 
