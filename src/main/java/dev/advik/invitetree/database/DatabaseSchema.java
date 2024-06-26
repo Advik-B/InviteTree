@@ -4,8 +4,6 @@ import java.util.Map;
 
 public interface DatabaseSchema {
 
-    public void setConnectionUrl(String url);
-
     public void createTables();
 
     public void connect();
