@@ -1,4 +1,4 @@
-package dev.advik.invitetree;
+package dev.advik.invitetree.database;
 
 public enum AccessTokenStatus {
     USED,
