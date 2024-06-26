@@ -13,12 +13,16 @@ public final class InviteTree extends JavaPlugin {
         url = "jdbc:sqlite:" + getDataFolder().getAbsolutePath() + "/players.db";
     }
 
-    @Override
-    public void onEnable() {
+    private void ensureFoldersExist() {
         // Make sure the data folder exists
         if (!getDataFolder().exists()) {
             getDataFolder().mkdir();
         }
+    }
+
+    @Override
+    public void onEnable() {
+        ensureFoldersExist();
         logger.info("InviteTree has been enabled!");
     }
 
