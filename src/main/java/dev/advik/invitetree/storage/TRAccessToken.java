@@ -63,4 +63,8 @@ public class TRAccessToken {
     public boolean isExpired() {
         return status == AccessTokenStatus.EXPIRED;
     }
+
+    public static TRAccessToken newToken() {
+        return new TRAccessToken(UUID.randomUUID(), AccessTokenStatus.VALID);
+    }
 }
