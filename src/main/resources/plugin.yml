@@ -5,3 +5,46 @@ api-version: '1.20'
 description: 'A plugin that adds an advanced invite system to your server with a lot of features.'
 database: true
 author: Advik-B
+commands:
+  invitetree:
+    description: 'Main command for the InviteTree plugin.'
+    usage: '/invitetree <subcommand>'
+    aliases: ['itree', 'it']
+
+  invite:
+    description: 'Generates an access token to add a friend to your tree.'
+    usage: '/invite'
+    aliases: ['it', 'i']
+  register:
+    description: 'Registers a player to the invite tree.'
+    usage: '/register <paste-access-token>'
+    aliases: ['reg', 'r']
+  invites:
+    description: 'Shows the access tokens you have generated and the players you have invited.'
+    usage: '/invites'
+    aliases: ['its', 'is']
+  password:
+    description: 'Sets a password for your account.'
+    usage: '/password <password> <confirm-password>'
+  change_password:
+    description: 'Changes your password.'
+    usage: '/change_password <old-password> <new-password> <confirm-new-password>'
+  remove:
+    description: 'Removes a player from the tree.'
+    usage: '/remove <player> <reason>'
+    aliases: ['rm', 'r']
+    permission: 'invite.admin'
+
+permissions:
+  invite.admin:
+    description: 'Allows the player to manage the invite tree.'
+    default: op
+  invite.use:
+    description: 'Allows the player to use the invite tree.'
+    default: true
+  invite.view.self:
+    description: 'Allows the player to view the invite tree.'
+    default: true
+  invite.view.other:
+    description: 'Allows the player to view the invite tree of other players or the whole tree.'
+    default: op
