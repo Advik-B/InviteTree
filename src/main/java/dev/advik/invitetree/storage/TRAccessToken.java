@@ -1,17 +1,18 @@
 package dev.advik.invitetree.storage;
 
 import dev.advik.invitetree.database.AccessTokenStatus;
+import java.util.UUID;
 
-public class AccessToken {
-    String token;
+public class TRAccessToken {
+    UUID token;
     AccessTokenStatus status;
 
-    public AccessToken(String token, AccessTokenStatus status) {
+    public TRAccessToken(UUID token, AccessTokenStatus status) {
         this.token = token;
         this.status = status;
     }
 
-    public String getToken() {
+    public UUID getToken() {
         return token;
     }
 
@@ -23,8 +24,24 @@ public class AccessToken {
         this.status = status;
     }
 
-    public void setToken(String token) {
+    public void setToken(UUID token) {
         this.token = token;
+    }
+
+    public void setUsed() {
+        status = AccessTokenStatus.USED;
+    }
+
+    public void setDisabled() {
+        status = AccessTokenStatus.DISABLED;
+    }
+
+    public void setExpired() {
+        status = AccessTokenStatus.EXPIRED;
+    }
+
+    public void setInvalid() {
+        status = AccessTokenStatus.INVALID;
     }
 
     public boolean isValid() {
@@ -39,4 +56,11 @@ public class AccessToken {
         return status == AccessTokenStatus.USED || status == AccessTokenStatus.INVALID;
     }
 
+    public boolean isDisabled() {
+        return status == AccessTokenStatus.DISABLED;
+    }
+
+    public boolean isExpired() {
+        return status == AccessTokenStatus.EXPIRED;
+    }
 }
