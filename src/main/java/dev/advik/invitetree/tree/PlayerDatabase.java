@@ -42,6 +42,7 @@ public class PlayerDatabase implements DatabaseScaffold {
             "token TEXT PRIMARY KEY," +
             "status TEXT NOT NULL," +
             "invited_at TIMESTAMP" +
+            "used_at TIMESTAMP" +
             ");";
 
         executeUpdate(createAccessTokenTable);
