@@ -76,6 +76,10 @@ public class TRPlayer {
         this.passwordHash = BCryptHasher.hashPassword(password);
     }
 
+    public boolean checkPassword(String password) {
+        return BCryptHasher.verifyPassword(password, passwordHash);
+    }
+
     public void setLastLogin(ZonedDateTime lastLogin) {
         this.lastLogin = lastLogin;
     }
