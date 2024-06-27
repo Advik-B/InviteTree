@@ -1,11 +1,16 @@
 package dev.advik.invitetree.storage;
 
 import dev.advik.invitetree.database.AccessTokenStatus;
+import dev.advik.invitetree.tree.PlayerDatabase;
+
+import java.time.ZonedDateTime;
 import java.util.UUID;
 
 public class TRAccessToken {
     UUID token;
     AccessTokenStatus status;
+    ZonedDateTime invitedAt;
+    ZonedDateTime usedAt;
 
     public TRAccessToken(UUID token, AccessTokenStatus status) {
         this.token = token;
@@ -67,4 +72,11 @@ public class TRAccessToken {
     public static TRAccessToken newToken() {
         return new TRAccessToken(UUID.randomUUID(), AccessTokenStatus.VALID);
     }
+
+    public static TRAccessToken newToken(AccessTokenStatus status) {
+        return new TRAccessToken(UUID.randomUUID(), status);
+    }
+
+    public void addToDatabase(PlayerDatabase database) {}
+
 }
