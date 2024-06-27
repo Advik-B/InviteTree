@@ -3,6 +3,7 @@ package dev.advik.invitetree.storage;
 import dev.advik.invitetree.database.PlayerStatus;
 import dev.advik.invitetree.tree.PlayerDatabase;
 
+import java.util.Map;
 import java.util.UUID;
 
 // All classes are prefixed with TR to avoid conflicts with other plugins & libraries
@@ -84,8 +85,15 @@ public class TRPlayer {
         invitedBy = null;
     }
 
+    public boolean isReady() {
+        return name != null && uuid != null && status != null && accessToken != null;
+    }
+
     public void addToDatabase(PlayerDatabase database) {
-        database.addPlayer(this);
+        if (!isReady()) {
+            throw new IllegalStateException("Player is not ready to be added to the database");
+        }
+        // Add player to database
     }
 
 }
