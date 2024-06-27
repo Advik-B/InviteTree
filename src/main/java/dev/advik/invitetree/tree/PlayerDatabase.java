@@ -1,13 +1,13 @@
 package dev.advik.invitetree.tree;
 
-import dev.advik.invitetree.database.DatabaseSchema;
+import dev.advik.invitetree.database.DatabaseScaffold;
 
 import java.sql.*;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class PlayerDatabase implements DatabaseSchema {
+public class PlayerDatabase implements DatabaseScaffold {
     String connectionUrl;
     Logger logger;
     Connection dbConn;
