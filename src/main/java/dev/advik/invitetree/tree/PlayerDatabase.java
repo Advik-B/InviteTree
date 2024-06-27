@@ -1,12 +1,9 @@
 package dev.advik.invitetree.tree;
 
-import dev.advik.invitetree.database.AccessTokenStatus;
 import dev.advik.invitetree.database.DatabaseSchema;
-import dev.advik.invitetree.database.InviteType;
 
 import java.sql.*;
 import java.util.Map;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,152 +38,43 @@ public class PlayerDatabase implements DatabaseSchema {
     }
 
     @Override
-    public String generateAccessToken(InviteType invitorType) {
-        return "";
+    public String executeQuery(String query, Map<Integer, Object> params) {
+        try {
+            PreparedStatement stmt = dbConn.prepareStatement(query);
+            for (Map.Entry<Integer, Object> entry : params.entrySet()) {
+                stmt.setObject(entry.getKey(), entry.getValue());
+            }
+            ResultSet rs = stmt.executeQuery();
+            return rs.getString(1);
+        } catch (SQLException e) {
+            logger.severe("Failed to execute query: " + query);
+            logger.log(Level.SEVERE, e.getMessage(), e);
+            return null;
+        }
     }
 
     @Override
-    public String generateAccessToken(InviteType invitorType, String invitorName) {
-        return "";
-    }
-
-    @Override
-    public void addPlayer(String playerName, String accessToken, String password) {
-
-    }
-
-    @Override
-    public void removePlayer(String playerName) {
-
-    }
-
-    @Override
-    public void updatePassword(String playerName, String password) {
-
-    }
-
-    @Override
-    public boolean playerExists(String playerName) {
-        return false;
-    }
-
-    @Override
-    public boolean accessTokenExists(String accessToken) {
-        return false;
-    }
-
-    @Override
-    public boolean accessTokenMatchesPlayer(String accessToken, String playerName) {
-        return false;
-    }
-
-    @Override
-    public boolean authenticatePlayer(String playerName, String password) {
-        return false;
-    }
-
-    @Override
-    public String getAccessToken(String playerName) {
-        return "";
-    }
-
-    @Override
-    public AccessTokenStatus getAccessTokenStatus(String accessToken) {
-        return null;
-    }
-
-    @Override
-    public String getInvitorName(String accessToken) {
-        return "";
-    }
-
-    @Override
-    public InviteType getInvitorType(String accessToken) {
-        return null;
-    }
-
-    @Override
-    public void disableAccessToken(String accessToken) {
-
-    }
-
-    @Override
-    public void enableAccessToken(String accessToken) {
-
-    }
-
-    @Override
-    public void disableAllAccessTokens(String playerName) {
-
-    }
-
-    @Override
-    public void enableAllAccessTokens(String playerName) {
-
-    }
-
-    @Override
-    public void pauseInvites(String playerName) {
-
-    }
-
-    @Override
-    public void resumeInvites(String playerName) {
-
-    }
-
-    @Override
-    public void pauseInvites() {
-
-    }
-
-    @Override
-    public void resumeInvites() {
-
-    }
-
-    @Override
-    public void trackPlayer(String playerName) {
-
-    }
-
-    @Override
-    public void untrackPlayer(String playerName) {
-
-    }
-
-    @Override
-    public boolean isPlayerTracked(String playerName) {
-        return false;
-    }
-
-    @Override
-    public String[] getTrackedPlayers() {
-        return new String[0];
-    }
-
-    @Override
-    public String[] getPlayerInvites(String playerName) {
-        return new String[0];
-    }
-
-    @Override
-    public Map<String, String> getInvites() {
-        return Map.of();
-    }
-
-    @Override
-    public String generateAccessToken() {
-        return "";
-    }
-
-    @Override
-    public String generateAccessToken(String invitorName, String password) {
-        return "";
+    public void executeUpdate(String query, Map<Integer, Object> params) {
+        try {
+            PreparedStatement stmt = dbConn.prepareStatement(query);
+            for (Map.Entry<Integer, Object> entry : params.entrySet()) {
+                stmt.setObject(entry.getKey(), entry.getValue());
+            }
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            logger.severe("Failed to execute update: " + query);
+            logger.log(Level.SEVERE, e.getMessage(), e);
+        }
     }
 
     @Override
     public void closeConnection() {
-
+        try {
+            dbConn.close();
+            logger.info("Closed connection to database at " + connectionUrl);
+        } catch (SQLException e) {
+            logger.severe("Failed to close connection to database at " + connectionUrl);
+            logger.log(Level.SEVERE, e.getMessage(), e);
+        }
     }
 }
