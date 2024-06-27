@@ -21,7 +21,7 @@ public class PlayerDatabase implements DatabaseScaffold {
     public void createTables() {
         /*
         >>> Player <<<
-        | access_token | player_name | password |
+        | player_name | player_uuid | player_status | access_token | invited_by | invited_at | last_login |
          */
     }
 
