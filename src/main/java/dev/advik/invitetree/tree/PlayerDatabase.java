@@ -68,6 +68,9 @@ public class PlayerDatabase implements DatabaseScaffold {
                 stmt.setObject(entry.getKey(), entry.getValue());
             }
             ResultSet rs = stmt.executeQuery();
+            logger.log(Level.WARNING, "Query executed: " + query);
+            logger.log(Level.WARNING, "Params: " + params);
+            logger.log(Level.WARNING, "Result: " + rs.getString(1));
             return rs.getString(1);
         } catch (SQLException e) {
             logger.severe("Failed to execute query: " + query);
