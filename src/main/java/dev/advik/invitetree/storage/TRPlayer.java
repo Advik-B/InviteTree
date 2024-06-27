@@ -3,6 +3,7 @@ package dev.advik.invitetree.storage;
 import dev.advik.invitetree.database.PlayerStatus;
 import dev.advik.invitetree.tree.PlayerDatabase;
 
+import java.time.ZonedDateTime;
 import java.util.Map;
 import java.util.UUID;
 
@@ -13,6 +14,9 @@ public class TRPlayer {
     private TRPlayer invitedBy;
     private PlayerStatus status;
     private String accessToken;
+    private ZonedDateTime invitedAt;
+    private ZonedDateTime lastLogin;
+    private String passwordHash;
 
     public TRPlayer(String name, String uuid, TRPlayer invitedBy, PlayerStatus status, String accessToken) {
         this.name = name;
@@ -48,6 +52,35 @@ public class TRPlayer {
 
     public String getAccessToken() {
         return accessToken;
+    }
+
+    public ZonedDateTime getInvitedAt() {
+        return invitedAt;
+    }
+
+    public ZonedDateTime getLastLogin() {
+        return lastLogin;
+    }
+
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public void setLastLogin(ZonedDateTime lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    public void setInvitedAt(ZonedDateTime invitedAt) {
+        this.invitedAt = invitedAt;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean isInvited() {
@@ -94,8 +127,7 @@ public class TRPlayer {
             throw new IllegalStateException("Player is not ready to be added to the database");
         }
         // Add player to database
-        database.executeUpdate("INSERT INTO players (player_name, player_uuid, player_status, access_token) VALUES (?, ?, ?, ?)",
-                Map.of(1, name, 2, uuid, 3, status.toString(), 4, accessToken));
+
     }
 
 }
