@@ -136,7 +136,28 @@ public class TRPlayer {
             throw new IllegalStateException("Player is not ready to be added to the database");
         }
         // Add player to database
-
+        database.executeInsert(
+                "INSERT INTO players " +
+                        "(" +
+                        "   player_name," +
+                        "   player_uuid," +
+                        "   player_status," +
+                        "   access_token," +
+                        "   invited_by," +
+                        "   invited_at," +
+                        "   last_login," +
+                        "   password_hash" +
+                        ") VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                Map.of(
+                        1, name,
+                        2, uuid,
+                        3, status.toString(),
+                        4, accessToken,
+                        5, invitedBy != null ? invitedBy.getName() : null,
+                        6, invitedAt != null ? invitedAt.toString() : null,
+                        7, lastLogin != null ? lastLogin.toString() : null,
+                        8, passwordHash
+                ));
     }
 
 }
