@@ -136,7 +136,7 @@ public class TRPlayer {
             throw new IllegalStateException("Player is not ready to be added to the database");
         }
         // Add player to database
-        
+
     }
 
 }
