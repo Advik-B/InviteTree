@@ -211,6 +211,20 @@ public class TRPlayer {
                 Map.of(1, playerName)
         );
 
+        return getTrPlayer_common(database, player, result);
+    }
+
+    public static TRPlayer fromDatabase(PlayerDatabase database, UUID playerUUID) {
+        TRPlayer player = new TRPlayer();
+        String result = database.executeQuery(
+                "SELECT * FROM players WHERE player_uuid = ?",
+                Map.of(1, playerUUID.toString())
+        );
+
+        return getTrPlayer_common(database, player, result);
+    }
+
+    private static TRPlayer getTrPlayer_common(PlayerDatabase database, TRPlayer player, String result) {
         if (result == null) {
             return null;
         }
