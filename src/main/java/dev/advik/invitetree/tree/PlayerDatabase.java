@@ -21,8 +21,30 @@ public class PlayerDatabase implements DatabaseScaffold {
     public void createTables() {
         /*
         >>> Player <<<
-        | player_name | player_uuid | player_status | access_token | invited_by | invited_at | last_login |
+        | player_name | player_uuid | player_status | access_token | invited_by | invited_at | last_login | password_hash |
+        |-------------|-------------|---------------|--------------|------------|------------|------------|--------------|
+        | String      | String      | PlayerStatus  | UUID       | String     | ZonedDateTime | ZonedDateTime | String |
          */
+
+        String createPlayerTable = "CREATE TABLE IF NOT EXISTS player (" +
+                "player_name TEXT PRIMARY KEY," +
+                "player_uuid TEXT NOT NULL," +
+                "player_status TEXT NOT NULL," +
+                "access_token TEXT," +
+                "invited_by TEXT," +
+                "invited_at TEXT," +
+                "last_login TEXT," +
+                "password_hash TEXT" +
+                ");";
+
+        String createAccessTokenTable = "CREATE TABLE IF NOT EXISTS access_token (" +
+                "token TEXT PRIMARY KEY," +
+                "status TEXT NOT NULL" +
+                ");";
+
+
+        executeUpdate(createPlayerTable);
+        executeUpdate(createAccessTokenTable);
     }
 
     @Override
@@ -61,6 +83,30 @@ public class PlayerDatabase implements DatabaseScaffold {
                 stmt.setObject(entry.getKey(), entry.getValue());
             }
             stmt.executeUpdate();
+        } catch (SQLException e) {
+            logger.severe("Failed to execute update: " + query);
+            logger.log(Level.SEVERE, e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public String executeQuery(String query) {
+        try {
+            Statement stmt = dbConn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            return rs.getString(1);
+        } catch (SQLException e) {
+            logger.severe("Failed to execute query: " + query);
+            logger.log(Level.SEVERE, e.getMessage(), e);
+            return null;
+        }
+    }
+
+    @Override
+    public void executeUpdate(String query) {
+        try {
+            Statement stmt = dbConn.createStatement();
+            stmt.executeUpdate(query);
         } catch (SQLException e) {
             logger.severe("Failed to execute update: " + query);
             logger.log(Level.SEVERE, e.getMessage(), e);
