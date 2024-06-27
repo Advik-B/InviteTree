@@ -194,4 +194,36 @@ public class TRPlayer {
                 "DELETE FROM players WHERE player_name = ?",
                 Map.of(1, name));
     }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public void setAccessToken(UUID accessToken) {
+        this.accessToken = accessToken.toString();
+    }
+
+
+    public static TRPlayer fromDatabase(PlayerDatabase database, String playerName) {
+        TRPlayer player = new TRPlayer();
+        String result = database.executeQuery(
+                "SELECT * FROM players WHERE player_name = ?",
+                Map.of(1, playerName)
+        );
+
+        if (result == null) {
+            return null;
+        }
+
+        String[] data = result.split(",");
+        player.setName(data[0]);
+        player.setUuid(data[1]);
+        player.setStatus(PlayerStatus.valueOf(data[2]));
+        player.setAccessToken(UUID.fromString(data[3]));
+        player.setInvitedBy(TRPlayer.fromDatabase(database, data[4]));
+        player.setInvitedAt(ZonedDateTime.parse(data[5]));
+        player.setLastLogin(ZonedDateTime.parse(data[6]));
+        player.setPasswordHash(data[7]);
+        return player;
+    }
 }
