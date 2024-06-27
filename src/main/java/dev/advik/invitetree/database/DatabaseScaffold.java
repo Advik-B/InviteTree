@@ -12,5 +12,9 @@ public interface DatabaseScaffold {
 
     public void executeUpdate(String query, Map<Integer, Object> params);
 
+    public String executeQuery(String query);
+
+    public void executeUpdate(String query);
+
     public void closeConnection();
 }
