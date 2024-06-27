@@ -44,8 +44,8 @@ public class PlayerDatabase implements DatabaseScaffold {
             "invited_at TIMESTAMP" +
             ");";
 
-        executeUpdate(createPlayerTable);
         executeUpdate(createAccessTokenTable);
+        executeUpdate(createPlayerTable);
     }
 
     @Override
