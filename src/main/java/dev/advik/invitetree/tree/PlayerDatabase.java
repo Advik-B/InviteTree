@@ -4,6 +4,7 @@ import dev.advik.invitetree.database.DatabaseScaffold;
 
 import java.sql.*;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,22 +27,22 @@ public class PlayerDatabase implements DatabaseScaffold {
         | String      | String      | PlayerStatus  | UUID       | String     | ZonedDateTime | ZonedDateTime | String |
          */
 
-        String createPlayerTable = "CREATE TABLE IF NOT EXISTS player (" +
-                "player_name TEXT PRIMARY KEY," +
-                "player_uuid TEXT NOT NULL," +
-                "player_status TEXT NOT NULL," +
-                "access_token TEXT," +
-                "invited_by TEXT," +
-                "invited_at TEXT," +
-                "last_login TEXT," +
-                "password_hash TEXT" +
-                ");";
+        String createPlayerTable = "CREATE TABLE IF NOT EXISTS players (" +
+            "player_name TEXT PRIMARY KEY," +
+            "player_uuid TEXT NOT NULL," +
+            "player_status TEXT NOT NULL," +
+            "access_token TEXT REFERENCES access_tokens(token)," +
+            "invited_by TEXT," +
+            "invited_at TIMESTAMP," +
+            "last_login TIMESTAMP," +
+            "password_hash TEXT" +
+            ");";
 
-        String createAccessTokenTable = "CREATE TABLE IF NOT EXISTS access_token (" +
-                "token TEXT PRIMARY KEY," +
-                "status TEXT NOT NULL" +
-                ");";
-
+        String createAccessTokenTable = "CREATE TABLE IF NOT EXISTS access_tokens (" +
+            "token TEXT PRIMARY KEY," +
+            "status TEXT NOT NULL," +
+            "invited_at TIMESTAMP" +
+            ");";
 
         executeUpdate(createPlayerTable);
         executeUpdate(createAccessTokenTable);
@@ -109,6 +110,20 @@ public class PlayerDatabase implements DatabaseScaffold {
             stmt.executeUpdate(query);
         } catch (SQLException e) {
             logger.severe("Failed to execute update: " + query);
+            logger.log(Level.SEVERE, e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public void executeInsert(String query, Map<Integer, Object> params) {
+        try {
+            PreparedStatement stmt = dbConn.prepareStatement(query);
+            for (Entry<Integer, Object> entry : params.entrySet()) {
+                stmt.setObject(entry.getKey(), entry.getValue());
+            }
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            logger.severe("Failed to execute insert: " + query);
             logger.log(Level.SEVERE, e.getMessage(), e);
         }
     }
