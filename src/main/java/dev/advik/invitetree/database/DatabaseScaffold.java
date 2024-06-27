@@ -2,7 +2,7 @@ package dev.advik.invitetree.database;
 
 import java.util.Map;
 
-public interface DatabaseSchema {
+public interface DatabaseScaffold {
 
     public void createTables();
 
