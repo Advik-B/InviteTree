@@ -1,6 +1,7 @@
 package dev.advik.invitetree.storage;
 
 import dev.advik.invitetree.database.PlayerStatus;
+import dev.advik.invitetree.hashers.BCryptHasher;
 import dev.advik.invitetree.tree.PlayerDatabase;
 
 import java.time.ZonedDateTime;
@@ -69,6 +70,10 @@ public class TRPlayer {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public void setPassword(String password) {
+        this.passwordHash = BCryptHasher.hashPassword(password);
     }
 
     public void setLastLogin(ZonedDateTime lastLogin) {
