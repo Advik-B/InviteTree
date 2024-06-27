@@ -128,7 +128,7 @@ public class TRPlayer {
     }
 
     public boolean isReady() {
-        return name != null && uuid != null && status != null && accessToken != null;
+        return name != null && uuid != null && status != null && accessToken != null && passwordHash != null;
     }
 
     public void addToDatabase(PlayerDatabase database) {
@@ -136,7 +136,7 @@ public class TRPlayer {
             throw new IllegalStateException("Player is not ready to be added to the database");
         }
         // Add player to database
-
+        
     }
 
 }
