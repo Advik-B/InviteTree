@@ -160,4 +160,38 @@ public class TRPlayer {
                 ));
     }
 
+    public void updateInDatabase(PlayerDatabase database) {
+        if (!isReady()) {
+            throw new IllegalStateException("Player is not ready to be updated in the database");
+        }
+        // Update player in database
+        database.executeUpdate(
+                "UPDATE players SET " +
+                        "player_status = ?, " +
+                        "access_token = ?, " +
+                        "invited_by = ?, " +
+                        "invited_at = ?, " +
+                        "last_login = ?, " +
+                        "password_hash = ? " +
+                        "WHERE player_name = ?",
+                Map.of(
+                        1, status.toString(),
+                        2, accessToken,
+                        3, invitedBy != null ? invitedBy.getName() : null,
+                        4, invitedAt != null ? invitedAt.toString() : null,
+                        5, lastLogin != null ? lastLogin.toString() : null,
+                        6, passwordHash,
+                        7, name
+                ));
+    }
+
+    public void deleteFromDatabase(PlayerDatabase database) {
+        if (!isReady()) {
+            throw new IllegalStateException("Player is not ready to be deleted from the database");
+        }
+        // Delete player from database
+        database.executeUpdate(
+                "DELETE FROM players WHERE player_name = ?",
+                Map.of(1, name));
+    }
 }
