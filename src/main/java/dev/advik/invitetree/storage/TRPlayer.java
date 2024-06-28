@@ -2,7 +2,7 @@ package dev.advik.invitetree.storage;
 
 import dev.advik.invitetree.database.PlayerStatus;
 import dev.advik.invitetree.hashers.BCryptHasher;
-import dev.advik.invitetree.tree.PlayerDatabase;
+import dev.advik.invitetree.impl_sqlite3.PlayerDatabase;
 
 import java.time.ZonedDateTime;
 import java.util.Map;
