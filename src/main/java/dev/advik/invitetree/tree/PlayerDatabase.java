@@ -1,6 +1,7 @@
 package dev.advik.invitetree.tree;
 
 import dev.advik.invitetree.database.DatabaseScaffold;
+import dev.advik.invitetree.storage.TRAccessToken;
 
 import java.sql.*;
 import java.util.Map;
@@ -142,4 +143,5 @@ public class PlayerDatabase implements DatabaseScaffold {
             logger.log(Level.SEVERE, e.getMessage(), e);
         }
     }
+
 }
