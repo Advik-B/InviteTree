@@ -1,5 +1,7 @@
 package dev.advik.invitetree.database;
 
+import dev.advik.invitetree.storage.TRAccessToken;
+
 import java.util.Map;
 
 public interface DatabaseScaffold {
