@@ -1,7 +1,6 @@
-package dev.advik.invitetree.tree;
+package dev.advik.invitetree.impl_sqlite3;
 
 import dev.advik.invitetree.database.DatabaseScaffold;
-import dev.advik.invitetree.storage.TRAccessToken;
 
 import java.sql.*;
 import java.util.Map;
