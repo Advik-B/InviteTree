@@ -23,7 +23,7 @@ public class LoginCommand {
         TRPlayer trPlayer = TRPlayer.fromDatabase(pDB, player.getName());
         if (trPlayer == null) {
             player.sendMessage("You are not registered, please register first!");
-            return;
+            return false;
         }
 
         if (trPlayer.checkPassword(password)) {
