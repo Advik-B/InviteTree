@@ -21,7 +21,8 @@
         "vscjava.vscode-java-dependency",
         "vscjava.vscode-java-test",
         "GitHub.copilot",
-        "fwcd.kotlin"
+        "fwcd.kotlin",
+        "PKief.material-icon-theme"
       ]
     }
   }
