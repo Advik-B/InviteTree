@@ -1,4 +1,4 @@
-package dev.advik.inviteTree;
+package dev.advik.inviteTree.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,6 +22,7 @@ public class Database {
             if (connection != null) {
                 log.info("Connected to the database");
                 ping();
+                createTables();
             }
         } catch (SQLException e) {
             log.throwing("Database", "connect", e);
@@ -46,6 +47,24 @@ public class Database {
             }
         } catch (SQLException e) {
             log.throwing("Database", "shutdown", e);
+        }
+    }
+
+    private void createTables() {
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(
+                    "CREATE TABLE IF NOT EXISTS players (" +
+                    "UUID TEXT PRIMARY KEY," +
+                    "invited_by TEXT NOT NULL FOREIGN KEY REFERENCES players(UUID)," +
+                    "status TEXT NOT NULL)");
+            statement.close();
+            statement = connection.createStatement();
+            statement.execute(
+                    "INSERT INTO players (UUID, invited_by, status) VALUES ('1234', '5678', 'accepted')");
+            statement.close();
+        } catch (SQLException e) {
+            log.throwing("Database", "createTables", e);
         }
     }
 }

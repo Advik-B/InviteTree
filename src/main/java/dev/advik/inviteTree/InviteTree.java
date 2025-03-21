@@ -1,5 +1,6 @@
 package dev.advik.inviteTree;
 
+import dev.advik.inviteTree.database.Database;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;

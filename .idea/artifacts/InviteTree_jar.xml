@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact name="InviteTree:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/InviteTree_jar</output-path>
+    <root id="root">
+      <element id="archive" name="InviteTree.jar">
+        <element id="module-output" name="InviteTree.main" />
+        <element id="library" level="project" name="Gradle: org.xerial:sqlite-jdbc:3.46.1.2" />
+        <element id="dir-copy" path="$PROJECT_DIR$/out/production/resources" />
+      </element>
+    </root>
+  </artifact>
+</component>
