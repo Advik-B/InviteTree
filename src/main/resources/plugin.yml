@@ -4,11 +4,11 @@ main: dev.advik.InviteTree.InviteTree
 api-version: '1.21'
 load: STARTUP
 authors: [ Advik ]
-#commands:
-#  invite:
-#    description: Invite a player to play on the server
-#    usage: /invite <player>
-#    permission: invitetree.invite
+commands:
+  invite:
+    description: InviteCommand a player to play on the server
+    usage: /invite <player>
+    permission: invitetree.invite
 #  invites:
 #    description: List all the players you have invited or another player has invited
 #    usage: /invites [player]
