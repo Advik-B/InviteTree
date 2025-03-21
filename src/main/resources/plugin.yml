@@ -9,11 +9,11 @@ commands:
     description: InviteCommand a player to play on the server
     usage: /invite <player>
     permission: invitetree.invite
-#  invites:
-#    description: List all the players you have invited or another player has invited
-#    usage: /invites [player]
-#    permission: invitetree.invites.self
-#    permission-message: You do not have permission to use this command.
+  invites:
+    description: List all the players you have invited or another player has invited
+    usage: /invites [player]
+    permission: invitetree.invites.self
+    permission-message: You do not have permission to use this command.
 #  tree:
 #    description: List all the players invited (ever)
 #    usage: /tree
@@ -34,16 +34,16 @@ commands:
 #    permission-message: You do not have permission to use this command.
 #
 #
-#permissions:
-#  invitetree.invite:
-#    description: Allows a player to invite others
-#    default: true
-#  invitetree.invites.self:
-#    description: Allows a player to view their own invites
-#    default: true
-#  invitetree.invites.all:
-#    description: Allows a player to view invites of other players
-#    default: op
+permissions:
+  invitetree.invite:
+    description: Allows a player to invite others
+    default: true
+  invitetree.invites.self:
+    description: Allows a player to view their own invites
+    default: true
+  invitetree.invites.all:
+    description: Allows a player to view invites of other players
+    default: op
 #  invitetree.tree:
 #    description: Allows to view the invite tree
 #    default: op
