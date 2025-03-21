@@ -1,0 +1,6 @@
+name: InviteTree
+version: '1.0-SNAPSHOT'
+main: dev.advik.inviteTree.InviteTree
+api-version: '1.21'
+load: STARTUP
+authors: [ Advik ]
