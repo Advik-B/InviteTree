@@ -45,6 +45,12 @@ public class InviteCommand implements CommandExecutor {
         }
 
         String playerToInvite = args[0];
+        // Check if the player is inviting themselves
+        if (Objects.equals(playerToInvite, sender.getName())) {
+            sender.sendMessage(Component.text("You cannot invite yourself", NamedTextColor.RED));
+            return true;
+        }
+
         // Check if the player is already invited
         try {
             var statement = conn.prepareStatement("SELECT * FROM users WHERE name = '" + playerToInvite + "';");
