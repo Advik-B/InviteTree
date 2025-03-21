@@ -4,3 +4,49 @@ main: dev.advik.inviteTree.InviteTree
 api-version: '1.21'
 load: STARTUP
 authors: [ Advik ]
+commands:
+  invite:
+    description: Invite a player to play on the server
+    usage: /invite <player>
+    permission: invitetree.invite
+  invites:
+    description: List all the players you have invited or another player has invited
+    usage: /invites [player]
+    permission: invitetree.invites.self
+    permission-message: You do not have permission to use this command.
+  tree:
+    description: List all the players invited by a player
+    usage: /tree [player]
+    permission: invitetree.tree.self
+    permission-message: You do not have permission to use this command.
+  banbranch:
+    description: Ban a player and all the players invited by them
+    usage: /banbranch <player>
+    permission: invitetree.banbranch
+  kickbranch:
+    description: Kick a player and all the players invited by them
+    usage: /kickbranch <player>
+    permission: invitetree.kickbranch
+
+permissions:
+  invitetree.invite:
+    description: Allows a player to invite others
+    default: true
+  invitetree.invites.self:
+    description: Allows a player to view their own invites
+    default: true
+  invitetree.invites.all:
+    description: Allows a player to view invites of other players
+    default: op
+  invitetree.tree.self:
+    description: Allows a player to view their own invite tree
+    default: true
+  invitetree.tree.all:
+    description: Allows a player to view the invite tree of any player
+    default: op
+  invitetree.banbranch:
+    description: Allows banning a player and their invitees
+    default: op
+  invitetree.kickbranch:
+    description: Allows kicking a player and their invitees
+    default: op
