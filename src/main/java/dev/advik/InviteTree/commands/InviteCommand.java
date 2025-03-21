@@ -8,7 +8,6 @@ import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -19,16 +18,10 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-public class InviteCommand implements CommandExecutor {
-
-    Database database;
-    Logger log;
-    JavaPlugin parent;
+public class InviteCommand extends CustomCommand {
 
     public InviteCommand(JavaPlugin parent, Database database, Logger log) {
-        this.database = database;
-        this.log = log;
-        this.parent = parent;
+        super(parent, database, log);
     }
 
     @Override
