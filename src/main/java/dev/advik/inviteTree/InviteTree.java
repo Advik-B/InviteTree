@@ -2,6 +2,7 @@ package dev.advik.InviteTree;
 
 
 import dev.advik.InviteTree.commands.InviteCommand;
+import dev.advik.InviteTree.commands.ViewInvitesCommand;
 import dev.advik.InviteTree.database.Database;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -24,6 +25,7 @@ public class InviteTree extends JavaPlugin {
         }
         database = new Database(getDataFolder().getAbsolutePath(), log);
         getCommand("invite").setExecutor(new InviteCommand(this, database, log));
+        getCommand("invites").setExecutor(new ViewInvitesCommand(this, database, log));
         log.info("InviteTree has been enabled!");
 
     }
