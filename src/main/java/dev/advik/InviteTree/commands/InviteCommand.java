@@ -97,9 +97,9 @@ public class InviteCommand implements CommandExecutor {
             log.throwing("InviteTree", "InviteCommand", e);
         }
 
-        sender.sendMessage(Component.text("Invitation added", TextColor.color(0x6400FF)));
-        Component message = Component.text("Invite Code: ", TextColor.color(0x00FF00))
-                .append(Component.text(uuid)
+        sender.sendMessage(Component.text("Invitation added", NamedTextColor.BLUE));
+        Component message = Component.text("Invite Code: ", NamedTextColor.WHITE)
+                .append(Component.text(uuid, TextColor.color(0x00FF00))
                         .hoverEvent(HoverEvent.showText(Component.text("Click to copy")))
                         .clickEvent(ClickEvent.copyToClipboard(uuid)));
         sender.sendMessage(message);
