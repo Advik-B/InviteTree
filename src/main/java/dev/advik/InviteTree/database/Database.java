@@ -1,11 +1,8 @@
 package dev.advik.InviteTree.database;
 
-import org.bukkit.plugin.java.JavaPlugin;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.util.UUID;
 import java.util.logging.Logger;
 
 public class Database {
