@@ -62,17 +62,7 @@ public class ViewInvitesCommand extends CustomCommand {
                 String invitee = resultSet.getString("invitee");
                 String uuid = resultSet.getString("uuid");
                 InvitationStatus status = InvitationStatus.values()[resultSet.getInt("status")];
-                String uuidText = (status == InvitationStatus.PENDING) ? "[Click to copy invite code]" : uuid;
-
-                Component inviteMessage = Component.text("\n➤ Player: ", NamedTextColor.GOLD)
-                        .append(Component.text(invitee, NamedTextColor.YELLOW))
-                        .append(Component.text("\n    Invite Code: ", NamedTextColor.WHITE)
-                                .append(Component.text(uuidText, TextColor.color(0x00FF00))
-                                        .hoverEvent(HoverEvent.showText(Component.text("Click to copy")))
-                                        .clickEvent(ClickEvent.copyToClipboard(uuid))))
-                        .append(Component.text("\n    Status: ", NamedTextColor.WHITE))
-                        .append(Component.text(status.getStatusString(), TextColor.color(status.getColor())))
-                        .append(Component.text("\n--------------------------------", NamedTextColor.GRAY));
+                Component inviteMessage = getComponent(status, uuid, invitee);
 
                 message = message.append(inviteMessage);
             }
@@ -84,5 +74,20 @@ public class ViewInvitesCommand extends CustomCommand {
             }
             return true;
         }
+    }
+
+    private static @NotNull Component getComponent(InvitationStatus status, String uuid, String invitee) {
+        String uuidText = (status == InvitationStatus.PENDING) ? "[Click to copy invite code]" : uuid;
+
+        Component inviteMessage = Component.text("\n➤ Player: ", NamedTextColor.GOLD)
+                .append(Component.text(invitee, NamedTextColor.YELLOW))
+                .append(Component.text("\n    Invite Code: ", NamedTextColor.WHITE)
+                        .append(Component.text(uuidText, TextColor.color(0x00FF00))
+                                .hoverEvent(HoverEvent.showText(Component.text("Click to copy")))
+                                .clickEvent(ClickEvent.copyToClipboard(uuid))))
+                .append(Component.text("\n    Status: ", NamedTextColor.WHITE))
+                .append(Component.text(status.getStatusString(), TextColor.color(status.getColor())))
+                .append(Component.text("\n--------------------------------", NamedTextColor.GRAY));
+        return inviteMessage;
     }
 }
