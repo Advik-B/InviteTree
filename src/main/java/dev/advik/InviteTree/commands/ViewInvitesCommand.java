@@ -79,7 +79,7 @@ public class ViewInvitesCommand extends CustomCommand {
     private static @NotNull Component getComponent(InvitationStatus status, String uuid, String invitee) {
         String uuidText = (status == InvitationStatus.PENDING) ? "[Click to copy invite code]" : uuid;
 
-        Component inviteMessage = Component.text("\n➤ Player: ", NamedTextColor.GOLD)
+        return Component.text("\n➤ Player: ", NamedTextColor.GOLD)
                 .append(Component.text(invitee, NamedTextColor.YELLOW))
                 .append(Component.text("\n    Invite Code: ", NamedTextColor.WHITE)
                         .append(Component.text(uuidText, TextColor.color(0x00FF00))
@@ -88,6 +88,5 @@ public class ViewInvitesCommand extends CustomCommand {
                 .append(Component.text("\n    Status: ", NamedTextColor.WHITE))
                 .append(Component.text(status.getStatusString(), TextColor.color(status.getColor())))
                 .append(Component.text("\n--------------------------------", NamedTextColor.GRAY));
-        return inviteMessage;
     }
 }
