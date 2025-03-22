@@ -54,7 +54,7 @@ public class ViewInvitesCommand extends CustomCommand {
 
     private boolean displayInvites(@NotNull CommandSender sender, PreparedStatement statement, String target) throws SQLException {
         try (ResultSet resultSet = statement.executeQuery()) {
-            Component message = Component.text("========== " + (target.equals(sender.getName()) ? "Your Invites" : "Invites for " + target) + " ==========", NamedTextColor.BLUE);
+            Component message = Component.text("《========== " + (target.equals(sender.getName()) ? "Your Invites" : "Invites for " + target) + " ==========》", NamedTextColor.BLUE);
             int invites = 0;
 
             while (resultSet.next()) {
@@ -64,7 +64,7 @@ public class ViewInvitesCommand extends CustomCommand {
                 InvitationStatus status = InvitationStatus.values()[resultSet.getInt("status")];
                 String uuidText = (status == InvitationStatus.PENDING) ? "[Click to copy invite code]" : uuid;
 
-                Component inviteMessage = Component.text("\n➤ Invitee: ", NamedTextColor.GOLD)
+                Component inviteMessage = Component.text("\n➤ Player: ", NamedTextColor.GOLD)
                         .append(Component.text(invitee, NamedTextColor.YELLOW))
                         .append(Component.text("\n    Invite Code: ", NamedTextColor.WHITE)
                                 .append(Component.text(uuidText, TextColor.color(0x00FF00))
