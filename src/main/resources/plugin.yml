@@ -14,6 +14,10 @@ commands:
     usage: /invites [player]
     permission: invitetree.invites.self
     permission-message: You do not have permission to use this command.
+  inviterevoke:
+    description: Cancel an invite
+    usage: /inviterevoke <player> | <invite-code>
+    permission: invitetree.cancel.self
 #  tree:
 #    description: List all the players invited (ever)
 #    usage: /tree
@@ -43,6 +47,12 @@ permissions:
     default: true
   invitetree.invites.all:
     description: Allows a player to view invites of other players
+    default: op
+  invitetree.revoke.self:
+    description: Allows a player to cancel their own invites
+    default: true
+  invitetree.revoke.all:
+    description: Allows a player to cancel invites of other players
     default: op
 #  invitetree.tree:
 #    description: Allows to view the invite tree
